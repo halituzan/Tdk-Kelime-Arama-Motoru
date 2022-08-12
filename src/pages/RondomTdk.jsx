@@ -2,31 +2,21 @@ import React, { useEffect, useState } from "react";
 import { Button, Card, Badge } from "react-bootstrap";
 import Search from "../components/Search";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchTdk, fetchTdkSearching } from "../features/sozlukAction";
+import { fetchTdk } from "../features/sozlukAction";
 import { sozlukSelector } from "../features/sozlukSlice";
 import { ThreeDots } from "react-loading-icons";
+import SozlukTabs from "../components/SozlukTabs";
 
 export default function RondomTdk() {
   const dispatch = useDispatch();
   const { soz, loading, hasErrors } = useSelector(sozlukSelector).tdkSozluk;
 
   const [num, setNum] = useState(Math.floor(Math.random() * 92411));
-  const [tdk, setTdk] = useState({});
-  const [isSearch, setIsSearch] = useState("");
 
   useEffect(() => {
     setNum(Math.floor(Math.random() * 92411));
     dispatch(fetchTdk(num));
   }, [dispatch]);
-
-  useEffect(() => {
-    if (isSearch === "") {
-      dispatch(fetchTdk(Math.floor(Math.random() * 92411)));
-    }
-    if (isSearch !== "") {
-      dispatch(fetchTdkSearching(isSearch));
-    }
-  }, [isSearch]);
 
   const handleNewSoz = () => {
     setNum(Math.floor(Math.random() * 92411));
@@ -49,7 +39,11 @@ export default function RondomTdk() {
       );
     return (
       <>
-        <Card className="text-center w-75 m-auto" bg="success" text={"light"}>
+        <Card
+          className="text-center w-75 m-auto mb-5"
+          bg="success"
+          text={"light"}
+        >
           <Card.Header className="fs-2 d-flex justify-content-between">
             <h1 className="align-self-center">{soz?.madde}</h1>
             <Button
@@ -63,9 +57,14 @@ export default function RondomTdk() {
           <Card.Body>
             <Card.Text className="fs-3">ANLAMLAR</Card.Text>
             <p className="d-flex flex-column justify-content-center align-items-center">
-              <span className="fw-bold fs-3 text-decoration-underline"> {soz?.madde} </span> kelimesinin toplamda{" "}
-              {soz?.anlamlarListe?.length} anlamı bulunmaktadır.{" "}
+              <span className="fw-bold fs-3 text-decoration-underline">
+                {soz?.madde}
+              </span>
+              kelimesinin toplamda {soz?.anlamlarListe?.length} anlamı
+              bulunmaktadır.
             </p>
+
+            {soz?.lisan ? <p className="fs-5 mb-5">Lisan: {soz?.lisan}</p> : ""}
             {soz?.anlamlarListe?.map((soz, i) => (
               <div key={i}>
                 <p className="bg-light p-2 text-dark d-flex justify-content-between align-items-center">
@@ -74,7 +73,7 @@ export default function RondomTdk() {
                     {!soz?.ozelliklerListe
                       ? ""
                       : soz?.ozelliklerListe[0]?.tam_adi}
-                  </span>{" "}
+                  </span>
                   <span
                     className="d-flex justify-content-center"
                     style={{ width: "90%" }}
@@ -92,7 +91,6 @@ export default function RondomTdk() {
                       <div key={orn.ornek_id}>
                         <p className="mb-0">{orn.ornek}</p>
                         <p className=" fst-italic">
-                          {" "}
                           - {orn?.yazar?.map((author) => author.tam_adi)}
                         </p>
                       </div>
@@ -103,34 +101,21 @@ export default function RondomTdk() {
               </div>
             ))}
           </Card.Body>
+          {!soz.birlesikler ? (
+            ""
+          ) : (
+            <Card.Footer>
+              <SozlukTabs />
+            </Card.Footer>
+          )}
         </Card>
-        {!soz?.atasozu ? (
-          ""
-        ) : (
-          <div className="row mt-5 gap-3 justify-content-evenly mb-5">
-            <h2 className="text-center text-decoration-underline">
-              Ata Sözleri
-            </h2>
-            {soz.atasozu?.map((ata, ind) => (
-              <Card
-                key={ind}
-                bg="dark"
-                className="col-12 col-sm-6 col-md-4 col-lg-3 px-1 py-4 text-light"
-              >
-                <Card.Body className="row d-flex justify-content-center text-light text-center">
-                  <div className="">{ata.madde}</div>
-                </Card.Body>
-              </Card>
-            ))}
-          </div>
-        )}
       </>
     );
   };
 
   return (
     <div className="container mt-5">
-      <Search setIsSearch={setIsSearch} />
+      <Search />
       {renderSozluk()}
     </div>
   );

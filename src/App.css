@@ -1,3 +1,15 @@
 .button-review {
     max-height: 50px;
 }
+.nav-link {
+    color: white!important;
+}
+.nav-link:focus, .nav-link:hover {
+    color: black!important;
+}
+.nav-item .active {
+color: black!important;
+}
+.nav-tabs .nav-link:hover{
+    border: none;
+}
