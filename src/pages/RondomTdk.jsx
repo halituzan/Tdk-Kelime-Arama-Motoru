@@ -95,9 +95,13 @@ export default function RondomTdk() {
                     {soz?.orneklerListe?.map((orn, indis) => (
                       <div key={orn.ornek_id}>
                         <p className="mb-0 pb-0">{orn.ornek}</p>
-                        <p className=" fst-italic pb-0 mb-0">
-                          - {orn?.yazar?.map((author) => author.tam_adi)}
-                        </p>
+                        {!orn?.yazar ? (
+                          ""
+                        ) : (
+                          <p className=" fst-italic pb-0 mb-0">
+                            - {orn?.yazar?.map((author) => author.tam_adi)}
+                          </p>
+                        )}
                       </div>
                     ))}
                   </div>
