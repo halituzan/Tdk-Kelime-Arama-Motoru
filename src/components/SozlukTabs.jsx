@@ -17,7 +17,7 @@ export default function SozlukTabs() {
       {!soz.atasozu ? (
         " "
       ) : (
-        <Tab eventKey="atasozleri" title="Ata Sözleri / Deyimler">
+        <Tab eventKey="atasozleri" title="Atasözleri / Deyimler">
           <div className="row mt-5 gap-1 justify-content-center mb-5">
             {soz.atasozu?.map((ata, ind) => (
               <Card
