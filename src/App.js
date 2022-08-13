@@ -1,4 +1,3 @@
-import './App.css';
 import RondomTdk from './pages/RondomTdk';
 
 function App() {

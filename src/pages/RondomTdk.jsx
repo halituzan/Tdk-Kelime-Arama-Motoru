@@ -40,11 +40,11 @@ export default function RondomTdk() {
     return (
       <>
         <Card
-          className="text-center w-75 m-auto mb-5"
+          className="text-center w-75 m-auto mb-5 mobile-card-wrapper"
           bg="success"
           text={"light"}
         >
-          <Card.Header className="fs-2 d-flex justify-content-between">
+          <Card.Header className="fs-2 d-flex justify-content-between mobile-card-header">
             <h1 className="align-self-center">{soz?.madde}</h1>
             <Button
               variant="dark"
@@ -54,16 +54,16 @@ export default function RondomTdk() {
               Yenile
             </Button>
           </Card.Header>
-          <Card.Body>
-            <Card.Text className="fs-3">ANLAMLAR</Card.Text>
-            <p className="d-flex flex-column justify-content-center align-items-center">
-              <span className="fw-bold fs-3 text-decoration-underline">
-                {soz?.madde}
-              </span>
-              kelimesinin toplamda {soz?.anlamlarListe?.length} anlamı
-              bulunmaktadır.
-            </p>
-
+          <Card.Body className="mobile-card-body">
+            <Card.Text className="fs-3">
+              <p className="d-flex flex-column justify-content-center align-items-center">
+                <span className="fw-bold fs-3 text-decoration-underline">
+                  {soz?.madde}
+                </span>
+                kelimesinin toplamda {soz?.anlamlarListe?.length} anlamı
+                bulunmaktadır.
+              </p>
+            </Card.Text>
             {soz?.lisan ? <p className="fs-5 mb-5">Lisan: {soz?.lisan}</p> : ""}
             {soz?.anlamlarListe?.map((soz, i) => (
               <div key={i}>
@@ -114,7 +114,7 @@ export default function RondomTdk() {
   };
 
   return (
-    <div className="container mt-5">
+    <div className="container mobile-wrapper mt-5">
       <Search />
       {renderSozluk()}
     </div>

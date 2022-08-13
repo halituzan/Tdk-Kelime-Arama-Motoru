@@ -29,7 +29,7 @@ export default function Search() {
   };
 
   return (
-    <InputGroup className="container my-3 w-75">
+    <InputGroup className="container my-3 w-75 mobile-search">
       <Form.Control
         placeholder="Kelime Ara"
         aria-label="Kelime Ara"

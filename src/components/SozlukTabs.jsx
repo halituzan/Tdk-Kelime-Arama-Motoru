@@ -23,7 +23,7 @@ export default function SozlukTabs() {
               <Card
                 key={ind}
                 bg="light"
-                className="col-12 col-sm-6 col-md-4 col-lg-3 px-1 py-4 text-light"
+                className="col-5 col-sm-5 col-md-4 col-lg-3 px-1 py-4 text-light"
               >
                 <Card.Body className="row d-flex justify-content-center text-dark text-center">
                   <div className="">{ata.madde}</div>
@@ -42,7 +42,7 @@ export default function SozlukTabs() {
               <Card
                 key={ind}
                 bg="light"
-                className="col-12 col-sm-6 col-md-4 col-lg-3 px-1 py-4 text-light"
+                className="col-5 col-sm-5 col-md-4 col-lg-3 px-1 py-4 text-light"
               >
                 <Card.Body className="row d-flex justify-content-center text-dark text-center">
                   <div className="">{birlesik}</div>
