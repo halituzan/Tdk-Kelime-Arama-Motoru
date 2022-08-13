@@ -33,8 +33,15 @@ export default function RondomTdk() {
     if (hasErrors) return <div>Veri Çekilemedi</div>;
     if (!soz)
       return (
-        <div className="d-flex justify-content-center text-danger fs-1">
-          Aradığınız Kelime ile herhangi bir sonuç bulunamadı!
+        <div className="notfound container w-75 d-flex flex-column justify-content-center text-danger fs-1 p-3 align-items-center text-center">
+          Aradığınız kelime ile herhangi bir sonuç bulunamadı!
+          <Button
+            variant="light"
+            className="button-review my-5"
+            onClick={handleNewSoz}
+          >
+            Kelime Getir
+          </Button> Butonuna tıklayarak rastgele bir kelime getirebilirsiniz.
         </div>
       );
     return (
