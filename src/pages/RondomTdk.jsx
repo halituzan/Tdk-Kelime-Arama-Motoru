@@ -10,7 +10,7 @@ import SozlukTabs from "../components/SozlukTabs";
 export default function RondomTdk() {
   const dispatch = useDispatch();
   const { soz, loading, hasErrors } = useSelector(sozlukSelector).tdkSozluk;
-
+  console.log(soz);
   const [num, setNum] = useState(Math.floor(Math.random() * 92411));
 
   useEffect(() => {
@@ -66,31 +66,36 @@ export default function RondomTdk() {
             </Card.Text>
             {soz?.lisan ? <p className="fs-5 mb-5">Lisan: {soz?.lisan}</p> : ""}
             {soz?.anlamlarListe?.map((soz, i) => (
-              <div key={i}>
-                <p className="bg-light p-2 text-dark d-flex justify-content-between align-items-center">
-                  <Badge bg="dark">{i + 1}</Badge>
-                  <span className="text-secondary fst-italic text-decoration-underline align-self-center p-2">
-                    {!soz?.ozelliklerListe
-                      ? ""
-                      : soz?.ozelliklerListe[0]?.tam_adi}
-                  </span>
-                  <span
-                    className="d-flex justify-content-center"
-                    style={{ width: "90%" }}
-                  >
+              <div key={i} className="bg-light shadow">
+                <p className=" p-2 pt-3 pb-0 mb-0 text-dark d-flex justify-content-between align-items-center position-relative align-items-center">
+                  <Badge bg="dark position-absolute badge-list">
+                    {i + 1}{" "}
+                    {!soz?.ozelliklerListe ? (
+                      ""
+                    ) : (
+                      <span className="text-light fst-italic text-decoration-underline align-self-center p-2">
+                        {!soz?.ozelliklerListe
+                          ? ""
+                          : soz?.ozelliklerListe[0]?.tam_adi}
+                      </span>
+                    )}
+                  </Badge>
+
+                  <span className="d-flex justify-content-center align-items-center w-100 fs-4 lh-sm">
                     {soz?.anlam}
                   </span>
                 </p>
-
                 {!soz.orneklerListe ? (
                   ""
                 ) : (
-                  <div>
-                    <h5>Örnek</h5>
+                  <div className="text-dark flex-column d-flex justify-content-center px-5">
+                    <hr className="bg-dark" />
+
+                    {/* <h5 className="me-2">Örnek</h5> */}
                     {soz?.orneklerListe?.map((orn, indis) => (
                       <div key={orn.ornek_id}>
-                        <p className="mb-0">{orn.ornek}</p>
-                        <p className=" fst-italic">
+                        <p className="mb-0 pb-0">{orn.ornek}</p>
+                        <p className=" fst-italic pb-0 mb-0">
                           - {orn?.yazar?.map((author) => author.tam_adi)}
                         </p>
                       </div>
