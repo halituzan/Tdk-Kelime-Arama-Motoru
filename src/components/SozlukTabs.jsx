@@ -1,12 +1,17 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Tab, Tabs, Card } from "react-bootstrap";
 import { sozlukSelector } from "../features/sozlukSlice";
+import { fetchTdkSearching } from "../features/sozlukAction";
 
 export default function SozlukTabs() {
   const { soz } = useSelector(sozlukSelector).tdkSozluk;
+  const dispatch = useDispatch();
   const [key, setKey] = useState("");
-  const birlesikler = soz?.birlesikler?.split(",");
+  const birlesikler = soz?.birlesikler?.split(", ");
+  const handleBirlesikler = async (birlesik) => {
+    dispatch(fetchTdkSearching(birlesik));
+  };
   return (
     <Tabs
       id="controlled-tab-example"
@@ -26,7 +31,7 @@ export default function SozlukTabs() {
                 className="col-5 col-sm-5 col-md-4 col-lg-3 px-1 py-4 text-light"
               >
                 <Card.Body className="row d-flex justify-content-center text-dark text-center">
-                  <div className="">{ata.madde}</div>
+                  <div className="" onClick={() => handleBirlesikler(ata.madde)}>{ata.madde}</div>
                 </Card.Body>
               </Card>
             ))}
@@ -45,7 +50,9 @@ export default function SozlukTabs() {
                 className="col-5 col-sm-5 col-md-4 col-lg-3 px-1 py-4 text-light"
               >
                 <Card.Body className="row d-flex justify-content-center text-dark text-center">
-                  <div className="">{birlesik}</div>
+                  <div className="" onClick={() => handleBirlesikler(birlesik)}>
+                    {birlesik}{" "}
+                  </div>
                 </Card.Body>
               </Card>
             ))}
