@@ -30,7 +30,7 @@ export default function SozlukTabs() {
                 bg="light"
                 className="col-5 col-sm-5 col-md-4 col-lg-3 text-light"
               >
-                <Card.Body className="row d-flex justify-content-center text-dark text-center">
+                <Card.Body className="row d-flex justify-content-center text-dark text-center cursor-pointer">
                   <div className="d-flex justify-content-center align-items-center" onClick={() => handleBirlesikler(ata.madde)}>{ata.madde}</div>
                 </Card.Body>
               </Card>
@@ -49,7 +49,7 @@ export default function SozlukTabs() {
                 bg="light"
                 className="col-3 col-sm-5 col-md-4 col-lg-3 text-light"
               >
-                <Card.Body className="row d-flex justify-content-center text-dark text-center">
+                <Card.Body className="row d-flex justify-content-center text-dark text-center cursor-pointer">
                   <div className="d-flex justify-content-center align-items-center" onClick={() => handleBirlesikler(birlesik)}>
                     {birlesik}{" "}
                   </div>
