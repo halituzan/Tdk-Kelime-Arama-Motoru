@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
     loading: false,
+    hasErrors: false,
     soz: {}
 }
 export const sozlukSlice = createSlice({
@@ -13,11 +14,11 @@ export const sozlukSlice = createSlice({
         getTdkSuccess: (state, { payload }) => {
             state.soz = payload
             state.loading = false
-            // state.hasErrors = false
+            state.hasErrors = false
         },
         getTdkFailure: state => {
             state.loading = false
-            // state.hasErrors = true
+            state.hasErrors = true
         },
     },
 })
