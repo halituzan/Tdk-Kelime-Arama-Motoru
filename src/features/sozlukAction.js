@@ -1,5 +1,5 @@
 import axios from "axios"
-import { getTdk, getTdkFailure, getTdkSuccess } from "./sozlukSlice"
+import { getFavWord, getTdk, getTdkFailure, getTdkSuccess } from "./sozlukSlice"
 
 export function fetchTdkSearching(searching) {
     return async dispatch => {
@@ -21,6 +21,17 @@ export function fetchTdk(num) {
             dispatch(getTdkSuccess(data[0]))
         } catch (error) {
             dispatch(getTdkFailure())
+        }
+    }
+}
+
+export function fetchTdkFav(num) {
+    return async dispatch => {
+        try {
+            const { data } = await axios.get(`https://sozluk.gov.tr/gts_id?id=${num}`)
+            dispatch(getFavWord(data))
+        } catch (error) {
+            console.log(error)
         }
     }
 }
