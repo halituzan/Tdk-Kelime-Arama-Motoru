@@ -30,7 +30,7 @@ export default function RondomTdk() {
           <ThreeDots stroke="#000" fill="2e2e2e" speed={0.75} width="3rem" />
         </div>
       );
-    if (hasErrors) return <div>Veri Çekilemedi</div>;
+    // if (hasErrors) return <div>Veri Çekilemedi</div>;
     if (!soz)
       return (
         <div className="notfound container w-75 d-flex flex-column justify-content-center text-danger fs-1 p-3 align-items-center text-center">
@@ -41,7 +41,8 @@ export default function RondomTdk() {
             onClick={handleNewSoz}
           >
             Kelime Getir
-          </Button> Butonuna tıklayarak rastgele bir kelime getirebilirsiniz.
+          </Button>{" "}
+          Butonuna tıklayarak rastgele bir kelime getirebilirsiniz.
         </div>
       );
     return (
