@@ -6,6 +6,7 @@ import { fetchTdk } from "../features/sozlukAction";
 import { sozlukSelector } from "../features/sozlukSlice";
 import { ThreeDots } from "react-loading-icons";
 import SozlukTabs from "../components/SozlukTabs";
+// import cron from "cron";
 
 export default function RondomTdk() {
   const dispatch = useDispatch();
@@ -23,6 +24,21 @@ export default function RondomTdk() {
     dispatch(fetchTdk(num));
   };
 
+  // let job1 = new cron.CronJob(
+  //   "* 09 10 * * *",
+  //   function () {
+  //     setNum(Math.floor(Math.random() * 92411));
+  //     console.log("cron başarılı");
+  //   },
+  //   null,
+  //   true,
+  //   "America/Los_Angeles"
+  // );
+
+  // job1.start();
+
+  // job1.stop();
+
   const renderSozluk = () => {
     if (loading)
       return (
@@ -30,7 +46,12 @@ export default function RondomTdk() {
           <ThreeDots stroke="#000" fill="2e2e2e" speed={0.75} width="3rem" />
         </div>
       );
-    if (hasErrors) return <div className="d-flex justify-content-center fs-1">Veri Çekilemedi</div>;
+    if (hasErrors)
+      return (
+        <div className="d-flex justify-content-center fs-1">
+          Veri Çekilemedi
+        </div>
+      );
     if (!soz)
       return (
         <div className="notfound container w-75 d-flex flex-column justify-content-center text-danger fs-1 p-3 align-items-center text-center">
@@ -41,7 +62,8 @@ export default function RondomTdk() {
             onClick={handleNewSoz}
           >
             Kelime Getir
-          </Button> Butonuna tıklayarak rastgele bir kelime getirebilirsiniz.
+          </Button>{" "}
+          Butonuna tıklayarak rastgele bir kelime getirebilirsiniz.
         </div>
       );
     return (
