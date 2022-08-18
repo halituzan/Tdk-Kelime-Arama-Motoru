@@ -6,14 +6,19 @@ import { fetchTdk } from "../features/sozlukAction";
 import { sozlukSelector } from "../features/sozlukSlice";
 import { ThreeDots } from "react-loading-icons";
 import SozlukTabs from "../components/SozlukTabs";
+import { AiFillHeart } from "react-icons/ai";
+import { useCookies } from "react-cookie";
+import Sidebar from "../components/Sidebar";
 // import cron from "cron";
 
-export default function RondomTdk() {
-  const dispatch = useDispatch();
-  const { soz, loading, hasErrors } = useSelector(sozlukSelector).tdkSozluk;
-  console.log(soz);
-  const [num, setNum] = useState(Math.floor(Math.random() * 92411));
 
+export default function RondomTdk() {
+  const [cookies, setCookies] = useCookies();
+
+  const dispatch = useDispatch();
+  const { soz, loading, hasErrors, allword } =
+    useSelector(sozlukSelector).tdkSozluk;
+  const [num, setNum] = useState(Math.floor(Math.random() * 92411));
   useEffect(() => {
     setNum(Math.floor(Math.random() * 92411));
     dispatch(fetchTdk(num));
@@ -24,6 +29,12 @@ export default function RondomTdk() {
     dispatch(fetchTdk(num));
   };
 
+  const addFavorites = (soz) => {
+    const arr = cookies?.favorites?.split(",");
+    if (!arr?.includes(soz.madde_id))
+      setCookies("favorites", cookies.favorites + "," + soz.madde_id);
+  };
+  
   // let job1 = new cron.CronJob(
   //   "* 09 10 * * *",
   //   function () {
@@ -75,13 +86,22 @@ export default function RondomTdk() {
         >
           <Card.Header className="fs-2 d-flex justify-content-between mobile-card-header">
             <h1 className="align-self-center">{soz?.madde}</h1>
-            <Button
-              variant="dark"
-              className="button-review"
-              onClick={handleNewSoz}
-            >
-              Yenile
-            </Button>
+            <div className="card-buttons d-flex justify-content-evenly align-items-center">
+              <Button
+                variant="danger"
+                className="me-2"
+                onClick={() => addFavorites(soz)}
+              >
+                <AiFillHeart />
+              </Button>
+              <Button
+                variant="dark"
+                className="button-review"
+                onClick={handleNewSoz}
+              >
+                Yenile
+              </Button>
+            </div>
           </Card.Header>
           <Card.Body className="mobile-card-body">
             <Card.Text className="fs-3">
@@ -152,9 +172,12 @@ export default function RondomTdk() {
   };
 
   return (
-    <div className="container mobile-wrapper mt-5">
-      <Search />
-      {renderSozluk()}
+    <div className="d-flex justify-content-end">
+      <Sidebar />
+      <div className="mobile-wrapper mt-5 w-75">
+        <Search />
+        {renderSozluk()}
+      </div>
     </div>
   );
 }

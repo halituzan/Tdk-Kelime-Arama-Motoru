@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
     loading: false,
     hasErrors: false,
-    soz: {}
+    soz: {},
+    fav: []
 }
 export const sozlukSlice = createSlice({
     name: 'tdk',
@@ -20,10 +21,15 @@ export const sozlukSlice = createSlice({
             state.loading = false
             state.hasErrors = true
         },
+        getFavWord: (state, { payload }) => {
+            const newFav = [...state.fav]
+            newFav.push({ madde: payload.madde, anlamlarListe: payload?.anlamlarListe, kelime_no: payload.kelime_no})
+            state.fav = payload
+        }
     },
 })
 
-export const { getTdk, getTdkSuccess, getTdkFailure } = sozlukSlice.actions
+export const { getTdk, getTdkSuccess, getTdkFailure, getFavWord } = sozlukSlice.actions
 export const sozlukSelector = state => state
 export default sozlukSlice.reducer
 

@@ -11,7 +11,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-.cursor-pointer{
+.cursor-pointer {
   cursor: pointer;
 }
 .App {
@@ -152,4 +152,15 @@ code {
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
       border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   }
+}
+.sidebar {
+  width: 24%;
+  height: 100vh;
+  background-color: #0f5132;
+  position: fixed;
+  overflow-y: scroll;
+  left: 0;
+}
+.sidebar::-webkit-scrollbar {
+  width: 0;
 }
