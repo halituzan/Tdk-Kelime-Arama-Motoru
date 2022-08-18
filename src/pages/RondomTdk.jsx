@@ -9,6 +9,8 @@ import SozlukTabs from "../components/SozlukTabs";
 import { AiFillHeart } from "react-icons/ai";
 import { useCookies } from "react-cookie";
 import Sidebar from "../components/Sidebar";
+// import cron from "cron";
+
 
 export default function RondomTdk() {
   const [cookies, setCookies] = useCookies();
@@ -33,6 +35,20 @@ export default function RondomTdk() {
       setCookies("favorites", cookies.favorites + "," + soz.madde_id);
   };
   
+  // let job1 = new cron.CronJob(
+  //   "* 09 10 * * *",
+  //   function () {
+  //     setNum(Math.floor(Math.random() * 92411));
+  //     console.log("cron başarılı");
+  //   },
+  //   null,
+  //   true,
+  //   "America/Los_Angeles"
+  // );
+
+  // job1.start();
+
+  // job1.stop();
 
   const renderSozluk = () => {
     if (loading)
@@ -41,7 +57,12 @@ export default function RondomTdk() {
           <ThreeDots stroke="#000" fill="2e2e2e" speed={0.75} width="3rem" />
         </div>
       );
-    if (hasErrors) return <div>Veri Çekilemedi</div>;
+    if (hasErrors)
+      return (
+        <div className="d-flex justify-content-center fs-1">
+          Veri Çekilemedi
+        </div>
+      );
     if (!soz)
       return (
         <div className="notfound container w-75 d-flex flex-column justify-content-center text-danger fs-1 p-3 align-items-center text-center">
