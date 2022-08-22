@@ -8,13 +8,11 @@ import { ThreeDots } from "react-loading-icons";
 import SozlukTabs from "../components/SozlukTabs";
 import { AiFillHeart } from "react-icons/ai";
 import { useCookies } from "react-cookie";
-import Sidebar from "../components/Sidebar";
 // import cron from "cron";
 
 
 export default function RondomTdk() {
   const [cookies, setCookies] = useCookies();
-
   const dispatch = useDispatch();
   const { soz, loading, hasErrors, allword } =
     useSelector(sozlukSelector).tdkSozluk;
@@ -172,9 +170,8 @@ export default function RondomTdk() {
   };
 
   return (
-    <div className="d-flex justify-content-end">
-      <Sidebar />
-      <div className="mobile-wrapper mt-5 w-75">
+    <div className="d-flex justify-content-center">
+      <div className="mobile-wrapper mt-5 w-50">
         <Search />
         {renderSozluk()}
       </div>
