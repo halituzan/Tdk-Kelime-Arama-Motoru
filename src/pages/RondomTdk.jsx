@@ -8,8 +8,6 @@ import { ThreeDots } from "react-loading-icons";
 import SozlukTabs from "../components/SozlukTabs";
 import { AiFillHeart } from "react-icons/ai";
 import { useCookies } from "react-cookie";
-// import cron from "cron";
-
 
 export default function RondomTdk() {
   const [cookies, setCookies] = useCookies();
@@ -32,21 +30,6 @@ export default function RondomTdk() {
     if (!arr?.includes(soz.madde_id))
       setCookies("favorites", cookies.favorites + "," + soz.madde_id);
   };
-  
-  // let job1 = new cron.CronJob(
-  //   "* 09 10 * * *",
-  //   function () {
-  //     setNum(Math.floor(Math.random() * 92411));
-  //     console.log("cron başarılı");
-  //   },
-  //   null,
-  //   true,
-  //   "America/Los_Angeles"
-  // );
-
-  // job1.start();
-
-  // job1.stop();
 
   const renderSozluk = () => {
     if (loading)
